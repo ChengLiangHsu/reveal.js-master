@@ -268,7 +268,7 @@
 					<h3 class="top-title" style="color: #3498db;">面量圖</h3>
 				</section>
 				<!-- 地圖與 3D 視覺化 -->
-				<section><iframe style="width: 100vw; height: 100vh; display: flex; justify-content: center;"
+				<section><iframe style="width: 100vw; height: 90vh; display: flex; justify-content: center;"
 						src="pm25_map.html"></iframe>
 				</section>
 				<section>
@@ -310,16 +310,16 @@
 				</section>
 
 				<section>
-						<div class="method-content-expanded">
-							<h4>3. 輪廓係數法 (Silhouette Analysis)</h4>
-							<ul>
-								<li><strong>原理</strong>：透過計算每個樣本與其所在群的凝聚程度，以及與其他群的分離程度，得到一個數值。</li>
-								<li><strong>判斷基準</strong>：輪廓係數的平均值越高，表示聚類效果越好。</li>
-								<li><strong>優點</strong>：提供了一個客觀的指標來評估不同 K 值下的聚類品質。</li>
-							</ul>
-						</div>
-						<img style="width: 50px; height: 50px;" src="輪廓係數法.png"
-							data-preview-image onclick="RevealZoom.to({ element: this, scale: 5 })">
+					<div class="method-content-expanded">
+						<h4>3. 輪廓係數法 (Silhouette Analysis)</h4>
+						<ul>
+							<li><strong>原理</strong>：透過計算每個樣本與其所在群的凝聚程度，以及與其他群的分離程度，得到一個數值。</li>
+							<li><strong>判斷基準</strong>：輪廓係數的平均值越高，表示聚類效果越好。</li>
+							<li><strong>優點</strong>：提供了一個客觀的指標來評估不同 K 值下的聚類品質。</li>
+						</ul>
+					</div>
+					<img style="width: 50px; height: 50px;" src="輪廓係數法.png" data-preview-image
+						onclick="RevealZoom.to({ element: this, scale: 5 })">
 				</section>
 
 				<!-- K-Means 聚類程式碼與視覺化 -->
@@ -335,104 +335,111 @@
 					<h3 class="top-title" style="color: #3498db;">趨勢圖</h3>
 					<div style="display: flex; flex-wrap: wrap; justify-content: center;">
 						<figure style="width: 10%; height: 20%;">
-						<img  src="基隆.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">基隆</figcaption>
+							<img src="基隆.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">基隆</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="中壢.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">中壢</figcaption>
+							<img src="中壢.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">中壢</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="松山.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">松山</figcaption>
+							<img src="松山.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">松山</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="淡水.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">淡水</figcaption>
+							<img src="淡水.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">淡水</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="士林.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">士林</figcaption>
+							<img src="士林.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">士林</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="觀音.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">觀音</figcaption>
+							<img src="觀音.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">觀音</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="新莊.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">新莊</figcaption>
+							<img src="新莊.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">新莊</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="陽明.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">陽明</figcaption>
+							<img src="陽明.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">陽明</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="大里.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">大里</figcaption>
+							<img src="大里.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">大里</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="沙鹿.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">沙鹿</figcaption>
+							<img src="沙鹿.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">沙鹿</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="忠明.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">忠明</figcaption>
+							<img src="忠明.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">忠明</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="豐原.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">豐原</figcaption>
+							<img src="豐原.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">豐原</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="南投.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">南投</figcaption>
+							<img src="南投.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">南投</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="埔里.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">埔里</figcaption>
+							<img src="埔里.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">埔里</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="麥寮.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">麥寮</figcaption>
+							<img src="麥寮.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">麥寮</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="楠梓.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">楠梓</figcaption>
+							<img src="楠梓.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">楠梓</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="小港.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">小港</figcaption>
+							<img src="小港.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">小港</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="林園.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">林園</figcaption>
+							<img src="林園.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">林園</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="鳳山.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">鳳山</figcaption>
+							<img src="鳳山.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">鳳山</figcaption>
 						</figure>
 						<figure style="width: 10%; height: 20%;">
-						<img  src="恆春.png" data-preview-image>
-						<figcaption style="font-size: 0.5em;">恆春</figcaption>
+							<img src="恆春.png" data-preview-image>
+							<figcaption style="font-size: 0.5em;">恆春</figcaption>
 						</figure>
 					</div>
 				</section>
 
 				<section data-background-gradient="linear-gradient(180deg, #ffffff 0%, #f1f7fd 100%)">
 					<h3 class="top-title" style="color: #2980b9;">各地區趨勢分析總結</h3>
-					<div style="font-size: 0.65em; text-align: left; padding: 40px 60px; background: white; border-radius: 20px; box-shadow: 0 15px 45px rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.1); width: 85%;">
+					<div
+						style="font-size: 0.65em; text-align: left; padding: 40px 60px; background: white; border-radius: 20px; box-shadow: 0 15px 45px rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.1); width: 85%;">
 						<p style="margin-bottom: 25px;">
-							<strong style="color: #2980b9; font-size: 1.1em; display: block; margin-bottom: 8px;">1. 恆春：全台的「空氣品質對照組」</strong>
-							<span style="color: #34495e; line-height: 1.5; padding-left: 20px; border-left: 3px solid #3498db; display: block;">濃度極低且穩定，是理想的環境背景基準與對比。</span>
+							<strong style="color: #2980b9; font-size: 1.1em; display: block; margin-bottom: 8px;">1.
+								恆春：全台的「空氣品質對照組」</strong>
+							<span
+								style="color: #34495e; line-height: 1.5; padding-left: 20px; border-left: 3px solid #3498db; display: block;">濃度極低且穩定，是理想的環境背景基準與對比。</span>
 						</p>
-						
+
 						<p style="margin-bottom: 25px;">
-							<strong style="color: #2980b9; font-size: 1.1em; display: block; margin-bottom: 8px;">2. 埔里、南投：地形形成的「隱形重災區」</strong>
-							<span style="color: #34495e; line-height: 1.5; padding-left: 20px; border-left: 3px solid #3498db; display: block;">受盆地地形與偏西風影響，污染物易於積聚，呈現明顯高峰。</span>
+							<strong style="color: #2980b9; font-size: 1.1em; display: block; margin-bottom: 8px;">2.
+								埔里、南投：地形形成的「隱形重災區」</strong>
+							<span
+								style="color: #34495e; line-height: 1.5; padding-left: 20px; border-left: 3px solid #3498db; display: block;">受盆地地形與偏西風影響，污染物易於積聚，呈現明顯高峰。</span>
 						</p>
-						
+
 						<p style="margin-bottom: 25px;">
-							<strong style="color: #2980b9; font-size: 1.1em; display: block; margin-bottom: 8px;">3. 工業區直接影響：麥寮、小港、林園</strong>
-							<span style="color: #34495e; line-height: 1.5; padding-left: 20px; border-left: 3px solid #3498db; display: block;">緊鄰重工業區，監測數值波動劇烈，呈現明顯的脈衝高峰。</span>
+							<strong style="color: #2980b9; font-size: 1.1em; display: block; margin-bottom: 8px;">3.
+								工業區直接影響：麥寮、小港、林園</strong>
+							<span
+								style="color: #34495e; line-height: 1.5; padding-left: 20px; border-left: 3px solid #3498db; display: block;">緊鄰重工業區，監測數值波動劇烈，呈現明顯的脈衝高峰。</span>
 						</p>
 					</div>
 				</section>
