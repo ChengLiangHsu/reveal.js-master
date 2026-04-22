@@ -13,38 +13,86 @@
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="dist/plugin/highlight/monokai.css" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+TC:wght@400;700;900&display=swap"
+		rel="stylesheet">
+
 	<style>
+		:root {
+			--glass-bg: rgba(255, 255, 255, 0.7);
+			--glass-border: rgba(255, 255, 255, 0.3);
+			--glass-blur: blur(10px);
+			--primary-color: #2980b9;
+			--secondary-color: #8e44ad;
+			--accent-color: #27ae60;
+			--text-main: #2c3e50;
+		}
+
+		body {
+			font-family: 'Inter', 'Noto Sans TC', sans-serif !important;
+		}
+
+		.reveal h2,
+		.reveal h3 {
+			font-family: 'Noto Sans TC', sans-serif !important;
+			font-weight: 900 !important;
+			letter-spacing: -0.02em;
+		}
+
 		.reveal h3.top-title {
-			margin-top: 20px;
-			margin-bottom: 40px !important;
-			width: 100%;
-			font-size: 1.2em;
-			border-bottom: 2px solid rgba(0, 0, 0, 0.05);
-			padding-bottom: 15px;
-			text-align: center;
-			color: #34495e;
+			margin-top: 0;
+			margin-bottom: 30px !important;
+			width: fit-content;
+			font-size: 1.1em;
+			padding: 10px 30px;
+			background: var(--glass-bg);
+			backdrop-filter: var(--glass-blur);
+			border: 1px solid var(--glass-border);
+			border-radius: 50px;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+			color: var(--primary-color);
 		}
 
 		.reveal section {
 			display: flex !important;
 			flex-direction: column;
 			align-items: center;
-			justify-content: flex-start !important;
-			padding-top: 0 !important;
-			color: #2c3e50;
+			justify-content: center !important;
+			padding: 20px !important;
+			box-sizing: border-box;
+		}
+
+		.glass-card {
+			background: var(--glass-bg);
+			backdrop-filter: var(--glass-blur);
+			border: 1px solid var(--glass-border);
+			border-radius: 24px;
+			padding: 30px;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+			width: 90%;
+			max-width: 1000px;
+			transition: transform 0.3s ease;
+		}
+
+		.glass-card:hover {
+			transform: translateY(-5px);
 		}
 
 		.method-content-expanded {
-			width: 90%;
+			width: 100%;
 			text-align: left;
-			margin-top: 20px;
 		}
 
 		.method-content-expanded h4 {
-			color: #2c3e50;
+			color: var(--text-main);
 			margin-bottom: 15px;
-			font-size: 1.1em;
-			text-align: center;
+			font-size: 1.25em;
+			font-weight: 700;
+			border-left: 5px solid var(--primary-color);
+			padding-left: 15px;
 		}
 
 		.method-content-expanded ul {
@@ -54,35 +102,100 @@
 		}
 
 		.method-content-expanded li {
-			margin-bottom: 12px;
-			font-size: 0.7em;
-			line-height: 1.5;
+			margin-bottom: 15px;
+			font-size: 0.8em;
+			line-height: 1.6;
 		}
 
 		.method-content-expanded strong {
-			color: #2980b9;
+			color: var(--primary-color);
 			display: inline-block;
-			font-size: 1.05em;
+			font-size: 1.1em;
 			margin-right: 8px;
 		}
 
-		.tiny-image {
-			width: 20px;
-			height: 20px;
-			margin-top: auto;
-			margin-bottom: 20px;
-			opacity: 0.6;
+		/* 優化表格樣式 */
+		.reveal table {
+			margin: auto;
+			border-collapse: separate;
+			border-spacing: 0;
+			border-radius: 12px;
+			overflow: hidden;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+			font-size: 0.6em;
 		}
 
-		table {
+		.reveal table th {
+			background: rgba(41, 128, 185, 0.1);
+			padding: 15px;
+			font-weight: 700;
+		}
+
+		.reveal table td {
+			padding: 12px 15px;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 			background: white;
-			color: #333;
 		}
 
-		.reveal pre code {
-			background: #f8f9fa;
-			color: #333;
-			border: 1px solid #ddd;
+		/* 趨勢圖網格 */
+		.trend-grid {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			gap: 10px;
+			width: 100%;
+			padding: 10px;
+		}
+
+		.trend-item {
+			background: white;
+			border-radius: 12px;
+			padding: 8px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+			transition: all 0.3s ease;
+			border-top: 5px solid #ccc;
+			/* 預設顏色 */
+		}
+
+		.trend-item.cluster-background {
+			border-top-color: #27ae60;
+		}
+
+		/* 綠色：背景測站 */
+		.trend-item.cluster-urban {
+			border-top-color: #3498db;
+		}
+
+		/* 藍色：都市測站 */
+		.trend-item.cluster-basin {
+			border-top-color: #f1c40f;
+		}
+
+		/* 黃色：盆地地形 */
+		.trend-item.cluster-industrial {
+			border-top-color: #e74c3c;
+		}
+
+		/* 紅色：工業影響 */
+
+		.trend-item:hover {
+			transform: translateY(-5px) scale(1.05);
+			z-index: 10;
+			box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+		}
+
+		.trend-item img {
+			width: 100%;
+			height: 60px;
+			/* 固定高度縮小圖片 */
+			object-fit: contain;
+			border-radius: 4px;
+		}
+
+		.trend-item figcaption {
+			font-size: 0.4em;
+			margin-top: 5px;
+			font-weight: 700;
+			color: #444;
 		}
 	</style>
 </head>
@@ -93,34 +206,41 @@
 			<!-- 將所有投影片封裝在一個父級 section 中以實現垂直切換 -->
 			<section>
 				<!-- 封面 -->
-				<section data-background-gradient="linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)">
-					<h2 style="color: #2c3e50; font-weight: 800;">台灣 2019 年 <br> PM2.5 空氣品質分析</h2>
-					<p style="color: #7f8c8d; font-size: 0.8em; margin-top: 20px;">空間資料視覺化與降維特徵探索</p>
+				<section data-background-gradient="radial-gradient(circle, #ffffff 0%, #e0eafc 100%)">
+					<div class="glass-card" style="text-align: center; border-radius: 40px; padding: 60px;">
+						<h2 style="color: #1a2a6c; font-size: 2.5em; margin-bottom: 30px;">台灣 2019 年 <br> PM2.5 空氣品質分析
+						</h2>
+						<p
+							style="color: #5c7cfa; font-size: 1.1em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
+							空間資料視覺化 與 降維特徵探索
+						</p>
+						<div
+							style="width: 80px; height: 4px; background: #1a2a6c; margin: 30px auto; border-radius: 2px;">
+						</div>
+					</div>
 				</section>
 				<section>
 					<h3 class="top-title" style="color: #3498db;">資料預處理</h3>
 				</section>
 				<!-- 資料預處理 1 -->
 				<section data-auto-animate>
-					<div data-id="dataset-view"
-						style="width: 100%; padding: 25px; background: rgba(52, 152, 219, 0.05); border-radius: 15px; border: 1px solid rgba(52, 152, 219, 0.1);">
-						<div style="width: 100%; font-size: 0.65em;">
-							<p style="font-size: 1.8em; color: #2980b9; margin-bottom: 25px; font-weight: bold;">
-								1. 原始數據 (寬表格)</p>
-							<table style="width: 100%; border-collapse: collapse; text-align: left;">
+					<h3 class="top-title">1. 原始數據 (寬表格)</h3>
+					<div data-id="dataset-view" class="glass-card">
+						<div style="width: 100%;">
+							<table style="width: 100%;">
 								<thead>
-									<tr style="border-bottom: 3px solid #3498db; background-color: #f1f7fd;">
-										<th style="padding: 12px; color: #2980b9;">Station</th>
-										<th style="padding: 12px; color: #2980b9;">Day 1</th>
-										<th style="padding: 12px; color: #2980b9;">Day 2</th>
-										<th style="padding: 12px; color: #2980b9;">Day 3</th>
-										<th style="padding: 12px; color: #2980b9;">Day 4</th>
-										<th style="padding: 12px; color: #2980b9;">Day 5</th>
+									<tr>
+										<th>Station</th>
+										<th>Day 1</th>
+										<th>Day 2</th>
+										<th>Day 3</th>
+										<th>Day 4</th>
+										<th>Day 5</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr style="border-bottom: 1px solid #eee;">
-										<td style="padding: 10px; font-weight: bold;">基隆</td>
+									<tr>
+										<td style="font-weight: 700; color: var(--primary-color);">基隆</td>
 										<td>27.45</td>
 										<td>31.75</td>
 										<td>40.16</td>
@@ -128,7 +248,7 @@
 										<td>50.66</td>
 									</tr>
 									<tr>
-										<td style="padding: 10px; font-weight: bold;">...</td>
+										<td style="font-weight: 700; color: var(--primary-color);">...</td>
 										<td>...</td>
 										<td>...</td>
 										<td>...</td>
@@ -137,52 +257,52 @@
 									</tr>
 								</tbody>
 							</table>
+							<p style="font-size: 0.5em; color: #7f8c8d; margin-top: 20px;">※
+								原始資料以天為單位，包含全台各監測站之 PM2.5 數值。</p>
 						</div>
 					</div>
 				</section>
 
 				<!-- 資料預處理 2 -->
 				<section data-auto-animate>
-					<div data-id="dataset-view"
-						style="width: 100%; padding: 25px; background: rgba(155, 89, 182, 0.05); border-radius: 15px; border: 1px solid rgba(155, 89, 182, 0.1);">
-						<div style="font-size: 0.65em;">
-							<p style="font-size: 1.8em; color: #8e44ad; margin-bottom: 25px; font-weight: bold;">
-								2. 處理後數據 (長表格)</p>
-							<table
-								style="width: 100%; border-collapse: collapse; text-align: left; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+					<h3 class="top-title" style="color: var(--secondary-color);">2. 處理後數據 (長表格)</h3>
+					<div data-id="dataset-view" class="glass-card" style="border-color: rgba(155, 89, 182, 0.3);">
+						<div style="width: 100%;">
+							<table style="width: 100%;">
 								<thead>
-									<tr style="border-bottom: 3px solid #9b59b6; background-color: #f9f4fb;">
-										<th style="padding: 12px; color: #8e44ad;">測站</th>
-										<th style="padding: 12px; color: #8e44ad;">天數</th>
-										<th style="padding: 12px; color: #8e44ad;">日期</th>
-										<th style="padding: 12px; color: #8e44ad;">PM2.5</th>
-										<th style="padding: 12px; color: #8e44ad;">狀態</th>
+									<tr style="background: rgba(155, 89, 182, 0.1);">
+										<th>測站</th>
+										<th>天數</th>
+										<th>日期</th>
+										<th>PM2.5</th>
+										<th>狀態</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr style="border-bottom: 1px solid #eee;">
-										<td style="padding: 10px; font-weight: bold;">基隆</td>
+									<tr>
+										<td style="font-weight: 700;">基隆</td>
 										<td>1</td>
 										<td>2019-01-01</td>
 										<td>27.45</td>
-										<td style="color: #F1920E;">普通</td>
+										<td style="color: #F1920E; font-weight: 700;">普通</td>
 									</tr>
-									<tr style="border-bottom: 1px solid #eee;">
-										<td style="padding: 10px; font-weight: bold;">基隆</td>
+									<tr>
+										<td style="font-weight: 700;">基隆</td>
 										<td>2</td>
 										<td>2019-01-02</td>
 										<td>31.75</td>
-										<td style="color: #E3611C;">對敏感族群不健康</td>
+										<td style="color: #E3611C; font-weight: 700;">對敏感族群不健康</td>
 									</tr>
-									<tr style="border-bottom: 1px solid #eee;">
-										<td style="padding: 10px; font-weight: bold;">基隆</td>
+									<tr>
+										<td style="font-weight: 700;">基隆</td>
 										<td>3</td>
 										<td>2019-01-03</td>
 										<td>40.16</td>
-										<td style="color: #C70039;">對所有族群不健康</td>
+										<td style="color: #C70039; font-weight: 700;">對所有族群不健康</td>
 									</tr>
 									<tr>
-										<td style="padding: 10px; font-weight: bold;">...</td>
+										<td style="font-weight: 700;">...</td>
+										<td>...</td>
 										<td>...</td>
 										<td>...</td>
 										<td>...</td>
@@ -191,35 +311,35 @@
 							</table>
 						</div>
 					</div>
-					<img style="width: 50px; height: 50px; margin-top: 20px; cursor: zoom-in;" src="環境部空氣品質指標.png"
-						data-preview-image onclick="RevealZoom.to({ element: this, scale: 5 })">
+					<div class=""
+						style="margin-top: 30px; display: flex; align-items: center; gap: 20px; background: white; padding: 10px 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+						<span style="font-size: 0.6em; color: #666;">導入環境部 AQI 標準</span>
+						<img style="width: 40px; height: 40px; cursor: pointer;" src="環境部空氣品質指標.png" data-preview-image
+							onclick="RevealZoom.to({ element: this, scale: 5 })">
+					</div>
 				</section>
 
 				<!-- 資料預處理 3 -->
 				<section data-auto-animate>
-					<div data-id="dataset-view"
-						style="width: 70vw; padding: 25px; background: rgba(39, 174, 96, 0.05); border-radius: 15px; border: 1px solid rgba(39, 174, 96, 0.1);">
-						<div style="width:100%;font-size: 0.65em;">
-							<p style="font-size: 1.8em; color: #27ae60; margin-bottom: 25px; font-weight: bold;">
-								3. 空間地理數據整合</p>
-							<table
-								style=" width: 100%; border-collapse: collapse; text-align: left; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+					<h3 class="top-title" style="color: var(--accent-color);">3. 空間地理數據整合</h3>
+					<div data-id="dataset-view" class="glass-card"
+						style="border-color: rgba(39, 174, 96, 0.3); width: 95%;">
+						<div style="width: 100%;">
+							<table style="width: 100%; font-size: 0.5em;">
 								<thead>
-									<tr style="border-bottom: 3px solid #27ae60; background-color: #f1f9f4;">
-										<th style="padding: 12px; color: #27ae60;">測站</th>
-										<th style="padding: 12px; color: #27ae60;">天數</th>
-										<th style="padding: 12px; color: #27ae60;">日期</th>
-										<th style="padding: 12px; color: #27ae60;">PM2.5</th>
-										<th style="padding: 12px; color: #27ae60;">狀態</th>
-										<th style="padding: 12px; color: #27ae60;">TOWNNAME</th>
-										<th style="padding: 12px; color: #27ae60;">COUNTYNAME</th>
-										<th style="padding: 12px; color: #27ae60;">geometry</th>
+									<tr style="background: rgba(39, 174, 96, 0.1);">
+										<th>測站</th>
+										<th>日期</th>
+										<th>PM2.5</th>
+										<th>狀態</th>
+										<th>TOWNNAME</th>
+										<th>COUNTYNAME</th>
+										<th>geometry</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr style="border-bottom: 1px solid #eee;">
-										<td style="font-weight: bold;">基隆</td>
-										<td>1</td>
+									<tr>
+										<td style="font-weight: 700;">基隆</td>
 										<td>2019-01-01</td>
 										<td>27.45</td>
 										<td style="color: #F1920E;">普通</td>
@@ -228,52 +348,47 @@
 										<td style="font-size: 0.8em; color: #7f8c8d;">POLYGON ((121.74...))</td>
 									</tr>
 									<tr>
-										<td style="font-weight: bold;">基隆</td>
-										<td>2</td>
+										<td style="font-weight: 700;">基隆</td>
 										<td>2019-01-02</td>
 										<td>31.75</td>
-										<td style="color: #E3611C;">對敏感族群不健康</td>
+										<td style="color: #E3611C;">對敏感不健康</td>
 										<td>仁愛區</td>
 										<td>基隆市</td>
 										<td style="font-size: 0.8em; color: #7f8c8d;">POLYGON ((121.74...))</td>
 									</tr>
 									<tr>
-										<td style="font-weight: bold;">基隆</td>
-										<td>3</td>
-										<td>2019-01-03</td>
-										<td>40.16</td>
-										<td style="color: #C70039;">對所有族群不健康</td>
-										<td>仁愛區</td>
-										<td>基隆市</td>
-										<td style="font-size: 0.8em; color: #7f8c8d;">POLYGON ((121.74...))</td>
-									</tr>
-									<tr>
+										<td style="font-weight: 700;">...</td>
 										<td>...</td>
 										<td>...</td>
 										<td>...</td>
 										<td>...</td>
 										<td>...</td>
 										<td>...</td>
-										<td>...</td>
-										<td style="font-size: 0.8em; color: #7f8c8d;">POLYGON ((121.74...))</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<img style="width: 50px; height: 50px; margin-top: 20px; cursor: zoom-in;" src="內政部全台灣村里界圖.png"
-						data-preview-image onclick="RevealZoom.to({ element: this, scale: 5 })">
+					<div class=""
+						style="margin-top: 30px; display: flex; align-items: center; gap: 20px; background: white; padding: 10px 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+						<span style="font-size: 0.6em; color: #666;">面量圖圖資來源：內政部全台灣村里界圖</span>
+						<img style="width: 40px; height: 40px; cursor: pointer;" src="內政部全台灣村里界圖.png" data-preview-image
+							onclick="RevealZoom.to({ element: this, scale: 5 })">
+					</div>
 				</section>
 				<section>
 					<h3 class="top-title" style="color: #3498db;">面量圖</h3>
 				</section>
 				<!-- 地圖與 3D 視覺化 -->
-				<section><iframe style="width: 100vw; height: 50vh;" src="pm25_map.html"></iframe>
+				<section style="padding: 0 !important;">
+					<iframe style="width: 1300px; height: 750px; border: none;" src="pm25_map.html"></iframe>
 				</section>
 				<section>
 					<h3 class="top-title" style="color: #3498db;">主成份分析</h3>
 				</section>
-				<section><iframe style="width: 100vw; height: 50vh;" src="pca_3d_visualization.html"></iframe>
+				<section style="padding: 0 !important;">
+					<iframe style="width: 1300px; height: 750px; border: none;"
+						src="pca_3d_visualization.html"></iframe>
 				</section>
 				<section>
 					<h3 class="top-title" style="color: #3498db;">K-Means 聚類</h3>
@@ -282,42 +397,51 @@
 					<h3 class="top-title" style="color: #3498db;">如何選擇最佳 K 值？</h3>
 				</section>
 				<section>
-					<div class="method-content-expanded">
-						<h4>1. 手肘法 (Elbow Method)</h4>
-						<ul>
-							<li><strong>原理</strong>：計算不同 $K$ 值下的 SSE (Sum of Squared Errors)。隨著 $K$ 增加，SSE 會自然下降。</li>
-							<li><strong>判斷基準</strong>：尋找圖形中「下降斜率顯著趨緩」的轉折點，該點看起來像手肘的關節。</li>
-							<li><strong>優點</strong>：直觀且計算快速。</li>
-						</ul>
+					<div class="glass-card">
+						<div class="method-content-expanded">
+							<h4>1. 手肘法 (Elbow Method)</h4>
+							<ul>
+								<li><strong>原理</strong>：計算不同 K值下的 SSE (Sum of Squared Errors)。</li>
+								<li><strong>判斷基準</strong>：尋找圖形中「下降斜率顯著趨緩」的轉折點。</li>
+							</ul>
+						</div>
+						<div style="text-align: right;">
+							<img style="width: 80px; height: 80px; cursor: zoom-in;" src="手肘法.png" data-preview-image
+								onclick="RevealZoom.to({ element: this, scale: 5 })">
+						</div>
 					</div>
-					<img style="width: 50px; height: 50px; margin-top: 20px; cursor: zoom-in;" src="手肘法.png"
-						data-preview-image onclick="RevealZoom.to({ element: this, scale: 5 })">
 				</section>
 
 				<section>
-					<div class="method-content-expanded">
-						<h4>2. Kneedle 演算法 (Kneedle Algorithm)</h4>
-						<ul>
-							<li><strong>原理</strong>：這是「手肘法」的數學進階版。它透過將曲線進行正規化 (Normalization) 並計算距離。</li>
-							<li><strong>判斷基準</strong>：自動找出曲線中「曲率最大」的點，即數學定義上的最佳轉折點。</li>
-							<li><strong>優點</strong>：消除了人工觀察手肘圖的主觀誤差。</li>
-						</ul>
+					<div class="glass-card">
+						<div class="method-content-expanded">
+							<h4>2. Kneedle 演算法 (Kneedle Algorithm)</h4>
+							<ul>
+								<li><strong>原理</strong>：手肘法的數學進階版，透過正規化曲線計算距離。</li>
+								<li><strong>判斷基準</strong>：自動找出曲線中「曲率最大」的點。</li>
+							</ul>
+						</div>
+						<div style="text-align: right;">
+							<img style="width: 80px; height: 80px; cursor: zoom-in;" src="膝蓋法.png" data-preview-image
+								onclick="RevealZoom.to({ element: this, scale: 5 })">
+						</div>
 					</div>
-					<img style="width: 50px; height: 50px; margin-top: 20px; cursor: zoom-in;" src="膝蓋法.png"
-						data-preview-image onclick="RevealZoom.to({ element: this, scale: 5 })">
 				</section>
 
 				<section>
-					<div class="method-content-expanded">
-						<h4>3. 輪廓係數法 (Silhouette Analysis)</h4>
-						<ul>
-							<li><strong>原理</strong>：透過計算每個樣本與其所在群的凝聚程度，以及與其他群的分離程度，得到一個數值。</li>
-							<li><strong>判斷基準</strong>：輪廓係數的平均值越高，表示聚類效果越好。</li>
-							<li><strong>優點</strong>：提供了一個客觀的指標來評估不同 K 值下的聚類品質。</li>
-						</ul>
+					<div class="glass-card">
+						<div class="method-content-expanded">
+							<h4>3. 輪廓係數法 (Silhouette Analysis)</h4>
+							<ul>
+								<li><strong>原理</strong>：計算樣本與其所在群的凝聚程度及分離程度。</li>
+								<li><strong>判斷基準</strong>：輪廓係數平均值越高，表示聚類效果越好。</li>
+							</ul>
+						</div>
+						<div style="text-align: right;">
+							<img style="width: 80px; height: 80px; cursor: zoom-in;" src="輪廓係數法.png" data-preview-image
+								onclick="RevealZoom.to({ element: this, scale: 5 })">
+						</div>
 					</div>
-					<img style="width: 50px; height: 50px;" src="輪廓係數法.png" data-preview-image
-						onclick="RevealZoom.to({ element: this, scale: 5 })">
 				</section>
 
 				<!-- K-Means 聚類程式碼與視覺化 -->
@@ -330,115 +454,122 @@
 				</section>
 
 				<section>
-					<h3 class="top-title" style="color: #3498db;">趨勢圖</h3>
-					<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-						<figure style="width: 10%; height: 20%;">
+					<h3 class="top-title">各地區 PM2.5 趨勢圖</h3>
+					<div class="trend-grid">
+						<figure class="trend-item cluster-urban">
 							<img src="基隆.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">基隆</figcaption>
+							<figcaption>基隆</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-urban">
 							<img src="中壢.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">中壢</figcaption>
+							<figcaption>中壢</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-urban">
 							<img src="松山.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">松山</figcaption>
+							<figcaption>松山</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-urban">
 							<img src="淡水.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">淡水</figcaption>
+							<figcaption>淡水</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-urban">
 							<img src="士林.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">士林</figcaption>
+							<figcaption>士林</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-urban">
 							<img src="觀音.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">觀音</figcaption>
+							<figcaption>觀音</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-urban">
 							<img src="新莊.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">新莊</figcaption>
+							<figcaption>新莊</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-background">
 							<img src="陽明.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">陽明</figcaption>
+							<figcaption>陽明</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-basin">
 							<img src="大里.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">大里</figcaption>
+							<figcaption>大里</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-basin">
 							<img src="沙鹿.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">沙鹿</figcaption>
+							<figcaption>沙鹿</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-basin">
 							<img src="忠明.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">忠明</figcaption>
+							<figcaption>忠明</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-basin">
 							<img src="豐原.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">豐原</figcaption>
+							<figcaption>豐原</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-basin">
 							<img src="南投.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">南投</figcaption>
+							<figcaption>南投</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-basin">
 							<img src="埔里.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">埔里</figcaption>
+							<figcaption>埔里</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-basin">
 							<img src="麥寮.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">麥寮</figcaption>
+							<figcaption>麥寮</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-industrial">
 							<img src="楠梓.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">楠梓</figcaption>
+							<figcaption>楠梓</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-industrial">
 							<img src="小港.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">小港</figcaption>
+							<figcaption>小港</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-industrial">
 							<img src="林園.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">林園</figcaption>
+							<figcaption>林園</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-industrial">
 							<img src="鳳山.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">鳳山</figcaption>
+							<figcaption>鳳山</figcaption>
 						</figure>
-						<figure style="width: 10%; height: 20%;">
+						<figure class="trend-item cluster-background">
 							<img src="恆春.png" data-preview-image>
-							<figcaption style="font-size: 0.5em;">恆春</figcaption>
+							<figcaption>恆春</figcaption>
 						</figure>
 					</div>
 				</section>
 
-				<section data-background-gradient="linear-gradient(180deg, #ffffff 0%, #f1f7fd 100%)">
-					<h3 class="top-title" style="color: #2980b9;">各地區趨勢分析總結</h3>
-					<div
-						style="font-size: 0.65em; text-align: left; padding: 40px 60px; background: white; border-radius: 20px; box-shadow: 0 15px 45px rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.1); width: 85%;">
-						<p style="margin-bottom: 25px;">
-							<strong style="color: #2980b9; font-size: 1.1em; display: block; margin-bottom: 8px;">1.
-								恆春：全台的「空氣品質對照組」</strong>
-							<span
-								style="color: #34495e; line-height: 1.5; padding-left: 20px; border-left: 3px solid #3498db; display: block;">濃度極低且穩定，是理想的環境背景基準與對比。</span>
-						</p>
+				<section data-background-gradient="linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%)">
+					<h3 class="top-title">各地區趨勢分析總結</h3>
+					<div class="glass-card" style="width: 90%; padding: 40px; text-align: left;">
+						<div class="method-content-expanded">
+							<div style="margin-bottom: 30px;">
+								<h4 style="font-size:0.8em; color: #27ae60; border-left-color: #27ae60;">背景與自然對照組</h4>
+								<p style="font-size: 0.6em; margin: 10px 0;">描述：PM2.5 濃度長期維持在極低水準且數值穩定，受人為活動干擾極小。</p>
+								<p style="font-size: 0.6em; color: #2980b9;">包含地區：恆春、陽明</p>
+							</div>
 
-						<p style="margin-bottom: 25px;">
-							<strong style="color: #2980b9; font-size: 1.1em; display: block; margin-bottom: 8px;">2.
-								埔里、南投：地形形成的「隱形重災區」</strong>
-							<span
-								style="color: #34495e; line-height: 1.5; padding-left: 20px; border-left: 3px solid #3498db; display: block;">受盆地地形與偏西風影響，污染物易於積聚，呈現明顯高峰。</span>
-						</p>
+							<div style="margin-bottom: 30px;">
+								<h4 style="font-size:0.8em; color: #3498db; border-left-color: #3498db;">都市生活與交通核心區</h4>
+								<p style="font-size: 0.6em; margin: 10px 0;">描述：呈現明顯的生活週期與上下班交通巔峰，數值隨人口活動頻率波動。</p>
+								<p style="font-size: 0.6em; color: #2980b9;">包含地區：基隆、松山、士林、中壢、新莊、觀音、淡水</p>
+							</div>
 
-						<p style="margin-bottom: 25px;">
-							<strong style="color: #2980b9; font-size: 1.1em; display: block; margin-bottom: 8px;">3.
-								工業區直接影響：麥寮、小港、林園</strong>
-							<span
-								style="color: #34495e; line-height: 1.5; padding-left: 20px; border-left: 3px solid #3498db; display: block;">緊鄰重工業區，監測數值波動劇烈，呈現明顯的脈衝高峰。</span>
-						</p>
+							<div style="margin-bottom: 30px;">
+								<h4 style="font-size:0.8em; color: #e8750cc3; border-left-color: #e8750cc3;">
+									盆地、台地地形蓄積敏感區
+								</h4>
+								<p style="font-size: 0.6em; margin: 10px 0;">描述：受限於地形特徵，污染物極易滯留積聚，在特定季節會出現顯著的高濃度波段。</p>
+								<p style="font-size: 0.6em; color: #2980b9;">包含地區：埔里、南投、大里、忠明、豐原、沙鹿、麥寮</p>
+							</div>
+
+							<div style="margin-bottom: 10px;">
+								<h4 style="font-size:0.8em; color: #e74c3c; border-left-color: #e74c3c;">工業重鎮與重度排放影響區
+								</h4>
+								<p style="font-size: 0.6em; margin: 10px 0;">描述：受周邊工業聚落直接影響，監測數據波動劇烈，且均值普遍高於全台水平。</p>
+								<p style="font-size: 0.6em; color: #2980b9;">包含地區：小港、林園、楠梓、鳳山</p>
+							</div>
+						</div>
 					</div>
 				</section>
 
@@ -459,13 +590,15 @@
 		// 初始化 Reveal.js
 		Reveal.initialize({
 			hash: true,
-			margin: 0.02,
-			transition: 'slide',
-			backgroundTransition: 'slide',
-			navigationMode: 'linear',  // 線性導覽，適合上下切換
-			controlsLayout: 'edges',   // 箭頭置於邊緣，強調上下與左右
+			margin: 0.04,
+			transition: 'convex',
+			backgroundTransition: 'zoom',
+			navigationMode: 'linear',
+			disableLayout: true,
+			controlsLayout: 'edges',
 			minScale: 0.2,
 			maxScale: 2.0,
+			center: true,
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom],
 		});
 	</script>
